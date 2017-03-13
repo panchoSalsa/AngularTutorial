@@ -86,8 +86,5 @@
     		return _.uniq(categories);
     	};
 
-
-
-
     })
 })();
