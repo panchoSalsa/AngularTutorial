@@ -31,3 +31,8 @@ md-input-container > md-select {
   from { opacity: 1; }
   to { opacity: 0; }
 }
+
+md-toolbar:not(.md-menu-toolbar) md-icon {
+    position: relative;
+    top: -5px;
+}
