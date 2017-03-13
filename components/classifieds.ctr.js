@@ -4,7 +4,7 @@
 
   angular
     .module("ngClassifieds")
-    .controller("classifiedsCtrl", function($scope, $http, classifiedsFactory, $mdSidenav, $mdToast) {
+    .controller("classifiedsCtrl", function($scope, $http, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog) {
 
     	classifiedsFactory.getClassifieds()
     		.then(function(classifieds) {
@@ -55,6 +55,22 @@
 					.position('top, right')
 					.hideDelay(3000)
 			);
-    	}
+    	};
+
+    	$scope.deleteClassified = function(event, classified) {
+    		var confirm = $mdDialog.confirm()
+    			.title('are you sure you want to delete ' + classified.title + '?')
+    			.ok('Yes')
+    			.cancel('No')
+    			.targetEvent(event)
+
+    		$mdDialog.show(confirm)
+    			.then(function() {
+    				var index = $scope.classifieds.indexOf(classified);
+    				$scope.classifieds.splice(index,1);
+    			}, function() {
+
+    			});
+    	};
     })
 })();
