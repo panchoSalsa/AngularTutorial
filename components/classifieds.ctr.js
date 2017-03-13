@@ -4,11 +4,19 @@
 
   angular
     .module("ngClassifieds")
-    .controller("classifiedsCtrl", function($scope, $http) {
+    .controller("classifiedsCtrl", function($scope, $http, classifiedsFactory, $mdSidenav) {
 
-    	$http.get('classifieds.json')
+    	classifiedsFactory.getClassifieds()
     		.then(function(classifieds) {
     			$scope.classifieds = classifieds.data;
     		});
+    	
+    	$scope.openSidebar = function() {
+    		$mdSidenav('left').open();
+    	};
+
+    	$scope.closeSidebar = function() {
+    		$mdSidenav('left').close();
+    	};
     })
 })();
